@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free-6.4.0-web/css/all.min.css') }}">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -41,5 +44,21 @@
         @stack('modals')
 
         @livewireScripts
+
+        <!-- sweetalert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- script para escuchar la emisión de un evento alert -->
+        <script>
+            Livewire.on('alert', function(message) {
+                Swal.fire({
+                    /* position: 'top-end', */
+                    icon: 'success',
+                    title: message,
+                    showConfirmButton: true,
+                    timer: 1500
+                })
+            })
+        </script>
     </body>
 </html>
