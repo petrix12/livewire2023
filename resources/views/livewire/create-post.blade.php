@@ -33,9 +33,14 @@
                 @enderror --}}
                 <x-input-error for='title' />
             </div>
-            <div class="mb-4">
+            <div class="mb-4" {{-- wire:ignore --}}>
                 <x-label value="Contenido del post" />
-                <textarea class="form-control w-full" id="" rows="6" wire:model.defer="content"></textarea>
+                <textarea
+                    {{-- id="editor" --}}
+                    class="form-control w-full"
+                    rows="6"
+                    wire:model.defer="content"
+                ></textarea>
                 <x-input-error for='content' />
             </div>
 
@@ -58,4 +63,23 @@
             {{-- <span wire:loading wire:target="save">Cargando...</span> --}}
         </x-slot>
     </x-dialog-modal>
+
+    @push('js')
+        {{-- https://ckeditor.com/ckeditor-5/download --}}
+        <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+
+        {{-- https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html --}}
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then(function(editor) {
+                    editor.model.document.on('change:data', () => {
+                        @this.set('content', editor.getData())
+                    })
+                })
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+    @endpush
 </div>

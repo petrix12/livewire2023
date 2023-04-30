@@ -19,6 +19,8 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        @stack('css')
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -44,6 +46,8 @@
         @stack('modals')
 
         @livewireScripts
+
+        @stack('js')
 
         <!-- sweetalert2 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

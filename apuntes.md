@@ -2,6 +2,7 @@
 + **URL**: https://codersfree.com/cursos/aprende-laravel-livewire-desde-cero
 + **Componentes tailwind**: https://tailwindcomponents.com/components
 + **Notificaciones SweetAlert2**: https://sweetalert2.github.io
++ **CKEditor**: https://ckeditor.com/ckeditor-5/download
 
 ## PARTE I: Crear proyecto
 1. Crear proyecto (con livewire y phpunit):
@@ -64,10 +65,17 @@
 ## PARTE VI: Refactory para presindir de los componente CreatePost y EditPost
 1. Modificar el controlador del componente livewire **app\Http\Livewire\ShowPosts.php**.
 2. Modificar la vista del componente livewire **resources\views\livewire\show-posts.blade.php**.
-3. Con respecto al componente **CreatePost**, realizar el refactory siguiendo la analogía a como se hizó con el componente **EditPost**. 
+3. Con respecto al componente **CreatePost**, realizar el refactory siguiendo la analogía a como se hizó con el componente **EditPost**.
 
 ## PARTE VII: Páginación
+1. Modificar el controlador del componente livewire **app\Http\Livewire\ShowPosts.php**.
+2. Modificar la vista del componente livewire **resources\views\livewire\show-posts.blade.php**.
 
+## PARTE VIII: Integración del CKEditor
+1. Modificar la plantilla principal **resources\views\layouts\app.blade.php** para definir stacks **css** y *js*.
+2. Modificar el componente vista livewire **resources\views\livewire\create-post.blade.php** para indicar el uso del CDN del CKEditor.
 
-
+## PARTE IX: Eliminar post
+1. Modificar componente vista livewire **resources\views\livewire\show-posts.blade.php**.
+1. Modificar componente controlador livewire **app\Http\Livewire\ShowPosts.php**.
  

@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadPosts">
     {{-- Encabezado --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -9,10 +9,20 @@
     {{-- Listar registros --}}
     <x-propios.table>
         <div class="px-4 py-4 flex items-center">
-            <x-input type="text" wire:model="search" class="flex-1 mr-4" placeholder="Buscar..." />
+            <div class="flex items-center">
+                <span>Mostrar</span>
+                <select wire:model="cant" class="mx-2 form-control">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span>entradas</span>
+            </div>
+            <x-input type="text" wire:model="search" class="flex-1 mx-4" placeholder="Buscar..." />
             @livewire('create-post')
         </div>
-        @if ($posts->count())
+        @if (count($posts))
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-800">
                     <tr>
@@ -96,12 +106,21 @@
                                     <a class="btn btn-green" wire:click="edit({{ $item }})">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    <a class="btn btn-red" wire:click="$emit('deletePost', {{ $item->id }})">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+
+            @if($posts->hasPages())
+                <div class="px-6 py-3">
+                    {{ $posts->links() }}
+                </div>
+            @endif
         @else
             <div class="px-4 py-4">
                 No se encontró ninguna coincidencia
@@ -157,4 +176,30 @@
             </x-danger-button>
         </x-slot>
     </x-dialog-modal>
+
+    @push('js')
+        <script src="sweetalert2.all.min.js"></script>
+        <script>
+            Livewire.on('deletePost', postId => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('show-posts', 'delete', postId);
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            })
+        </script>
+    @endpush
 </div>
