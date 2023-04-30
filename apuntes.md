@@ -41,14 +41,25 @@
 1. Crear componente para añadir registros:
     + $ php artisan make:livewire create-post
 2. Diseñar el componente vista **resources\views\livewire\create-post.blade.php**.
-3.  Programar el componente controlador **app\Http\Livewire\CreatePost.php**.
-4.  Crear archivo de estilos **resources\css\form.css**.
-5.  Importar los nuevos estilos en **resources\css\app.css**.
+3. Programar el componente controlador **app\Http\Livewire\CreatePost.php**.
+4. Crear archivo de estilos **resources\css\form.css**.
+5. Importar los nuevos estilos en **resources\css\app.css**.
 
 ## PARTE IV: Notificaciones
 1. Agregar el CDN de **sweetalert2** en la plantilla principal **resources\views\layouts\app.blade.php**.
 2. Agregar un script que escuche también en la plantilla principal, para que desencadene una notificación cuando se emita un evento **alert**.
 3. Indicar el componente **CreatePost** que emita el evento **alert** una vez creado un registro.
+
+## PARTE V: Editar registro
+1. Crear componente para editar registro:
+    + $ php artisan make:livewire edit-post
+2. Programar controlador livewire **app\Http\Livewire\EditPost.php**.
+3. Diseñar vista livewire **resources\views\livewire\edit-post.blade.php**.
+4. Crear archivo de estilos **resources\css\buttons.css**.
+5. Importar los nuevos estilos en **resources\css\app.css**.
+
+## PARTE VI: Refactory para presindir de los componente CreatePost y EditPost
+1. Modificar el controlador del componente livewire
 
 
  
