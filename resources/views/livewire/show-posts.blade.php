@@ -98,7 +98,7 @@
                                 </div>
                             </td>
                             <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                                {{ $item->content }}
+                                {!! $item->content !!}
                             </td>
                             <td class="px-4 py-4 text-sm whitespace-nowrap">
                                 <div class="flex items-center gap-x-6">
@@ -147,7 +147,7 @@
             {{-- Notificación --}}
             @if ($image)
                 <img class="mb-4" src="{{ $image->temporaryUrl() }}" alt="Nueva imagen del post">
-            @else
+            @elseif($post->image)
                 <img class="mb-4" src="{{ Storage::url($post->image) }}" alt="Antigua imagen del post">
             @endif
             <div class="mb-4">

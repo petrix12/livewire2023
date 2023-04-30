@@ -33,10 +33,10 @@
                 @enderror --}}
                 <x-input-error for='title' />
             </div>
-            <div class="mb-4" {{-- wire:ignore --}}>
+            <div class="mb-4" wire:ignore>
                 <x-label value="Contenido del post" />
                 <textarea
-                    {{-- id="editor" --}}
+                    id="editor"
                     class="form-control w-full"
                     rows="6"
                     wire:model.defer="content"
@@ -75,6 +75,9 @@
                 .then(function(editor) {
                     editor.model.document.on('change:data', () => {
                         @this.set('content', editor.getData())
+                    });
+                    Livewire.on('resetCKEditor', () => {
+                        editor.setData('');
                     })
                 })
                 .catch( error => {

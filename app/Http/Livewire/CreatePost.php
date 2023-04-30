@@ -58,4 +58,12 @@ class CreatePost extends Component
         $this->emitTo('show-posts', 'render');
         $this->emit('alert', 'El post se creo con éxito');
     }
+
+    public function updatingOpen() {
+        if($this->open) {
+            $this->reset(['content', 'title', 'image']);
+            $this->identificador = rand();
+            $this->emit('resetCKEditor');
+        }
+    }
 }
